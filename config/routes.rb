@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :diaries
   resources :notes
   root 'home#top'
+  get 'user', to: 'user#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

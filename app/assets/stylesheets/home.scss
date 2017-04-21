@@ -1,3 +1,63 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//共通部分
+body {
+  padding-top: 60px;
+  color: #364a4d;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #1f89e2;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #1b7ccd;
+}
+
+.container {
+  width:100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+//ヘッダー
+.navbar {
+  height: 65px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
+  top: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  margin-bottom: 20px;
+}
+
+.gmoves{
+  font-size: 30px;
+  color: black;
+  padding-top: 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-align: center;
+  display:block;
+}
+
+//フッター
+footer {
+  margin-top: 100px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #848484;
+}
+
+footer .small {
+  font-size: 14px;
+}

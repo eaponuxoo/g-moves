@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GMoves</title>
+  <title>G-Moves</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
 
+<header class="navbar">
+    <div class="container">
+      <div class="logo"><%= link_to "G-Moves", root_path , class: "gmoves" %></div>
+    </div>
+</header>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<div class="container">
+  <footer class="footer">
+    <div class="small">
+      &copy; 2017 G-Moves, Inc.
+    </div>
+  </footer>
+</div>
 </body>
 </html>

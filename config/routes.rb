@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'calendar', to: 'calendar#index'
+
   resources :diaries
   resources :notes
   root 'home#top'

@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :"タイトル(20字以内)" %><br>
+    <%= f.text_field :title, :size=>"40", :maxlength=>"20" %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :日付 %><br>
     <%= f.number_field :date %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <%= f.label :本文 %><br>
+    <%= f.text_field :content, :class =>"inputcontent" %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br>

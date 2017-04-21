@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @diary.title %>
+  <strong  class="item">タイトル:</strong>
+  <%= @diary.title  %>
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong  class="item">日付:</strong>
   <%= @diary.date %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong  class="item">本文:</strong>
   <%= @diary.content %>
 </p>
 
-<%= link_to 'Edit', edit_diary_path(@diary) %> |
-<%= link_to 'Back', diaries_path %>
+<%= link_to '編集', edit_diary_path(@diary) %> |
+<%= link_to '戻る', diaries_path %>

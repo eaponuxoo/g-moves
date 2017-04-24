@@ -1,11 +1,12 @@
-<h1> ここに@userの画像</h1>
-
+<div class="usershow">
+<h1> @userの画像</h1>
+<%= image_tag 'dog.jpg'%>
 <h1>　カレンダー　カレンダーには選択時params[:date]を　20170421 のような形で作る</h1>
 
 <% if @is_checking_user_log %>
   傾向分析　の　ボタン
 <% end %>
-
+<div class = "map">
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -32,3 +33,5 @@
 	<div id="debug"></div>
 </body>
 </html>
+</div>
+</div>

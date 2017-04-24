@@ -16,8 +16,8 @@
     <%= f.text_field :title, :size=>"40", :maxlength=>"20" %>
   </div>
   <div class="field">
-    <%= f.label :日付 ,class:"input"%><br>
-    <%= Time.zone.now.to_s :date %>
+    <%= f.label :日時 ,class:"input"%><br>
+    <%= Time.now.to_s :date %>
   </div>
   <div class="field">
     <%= f.label :本文 ,class:"input"%><br>

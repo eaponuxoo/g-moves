@@ -5,6 +5,19 @@
   padding-top:60px;
 }
 
-.map{
-  text-align: center;
+map{
+  position:relative;
+  margin-left: 50px;
+}
+
+.write{
+  color:white;
+  display:inline-block;
+  opacity:0.8;
+  padding:15px 40px;
+  background-color:#006400;
+  cursor:pointer;
+  box-shadow:0px 7px #556b2f;
+  border-radius:10px;
+  font-size:20px;
 }

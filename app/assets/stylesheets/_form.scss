@@ -1,11 +1,9 @@
-// Place all the styles related to the diaries controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.blank{
-  padding-top:60px;
+.input{
+  font-size:20px;
+  margin-bottom:5px;
 }
 
-.button{
+.submit{
   color:white;
   display:inline-block;
   opacity:0.8;
@@ -17,8 +15,16 @@
   font-size:20px;
 }
 
-.button:active{
+.submit:active{
   position:relative;
   top:7px;
   box-shadow:none;
+}
+
+.time{
+  font-size: 20px;
+}
+
+.field{
+  padding-top:10px;
 }

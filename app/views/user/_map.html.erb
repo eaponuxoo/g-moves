@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>TASK 2-1</title>
+
+	<!-- Google Map API. サービスとして運用する場合にはAPI keyを追加する必要がある -->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=ja"></script>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- Access-Control-Allow-Origin Errorを回避するために追加 -->
+	<script src="https://rawgit.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
+
+	<!-- 課題で編集するjavascriptのファイルパス -->
+	<script src="js/baseprojects3.js"></script>
+</head>
+<body style="margin: 0px; padding: 0px;">
+	<!-- Google Mapを表示 -->
+	<div id="map" style="width: 600px; height: 600px; position:center;"></div>
+
+	<!-- Debug用(ヒント用のソースコードで使用している。無視してもOK)-->
+	<div id="debug"></div>
+</body>
+</html>

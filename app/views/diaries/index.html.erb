@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Diaries</h1>
+<h1>日記一覧</h1>
+
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Date</th>
-      <th>Content</th>
+      <th>タイトル</th>
+      <th>日付</th>
+      <th>本文</th>
       <th>User_id</th>
       <th colspan="3"></th>
     </tr>
@@ -30,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Diary', new_diary_path %>
+<%= button_to '日記を書く', new_diary_path,class:"button" %>

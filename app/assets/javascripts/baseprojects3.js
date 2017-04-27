@@ -1,11 +1,14 @@
 const T_SPEED = 1.5; // 速度の閾値（m/s）
 const T_TIME = 20; //累積移動時間の閾値(s)
-
+const T_DISTANCE = 0.1;
+const SPEED_WALK = 4;
+const SPEED_RUN = 8;
+const SPEED_BIKE = 20;
 
 // 2点間の距離を計算
 function calcDistance(latLng1, latLng2) {
 	var r = 6378.137; // 地球の半径
-	
+
 	var lat1 = latLng1.lat();
 	var lng1 = latLng1.lng();
 	var lat2 = latLng2.lat();
@@ -42,7 +45,7 @@ function calcSpeed(km, sec) {
 function calcBalance(latLngs) {
 	var latTotal = 0;
 	var lngTotal = 0;
-	
+
 	// 緯度経度の合計を計算
 	for (var i = 0; i < latLngs.length; i++) {
 		latTotal += latLngs[i].lat();
@@ -58,15 +61,15 @@ function calcBalance(latLngs) {
 }
 
 $(function() {
-	
+
 	var latlng = new google.maps.LatLng(35.90, 132.92);
-	
+
 	var mapOptions = {
-		zoom: 14, 
+		zoom: 14,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-	
+
 	var map;
 
 	$.ajax({
@@ -76,23 +79,7 @@ $(function() {
 			map = new google.maps.Map(document.getElementById('map'), mapOptions);
 			xml = $.parseXML(res.responseText);
 			var infoList = xml.documentElement.getElementsByTagName("trkpt");
-			for (var i = 0; i+1<infoList.length; i=i+1){
-				var attributeLat1 = infoList[i].getAttribute("lat");
-				var attributeLon1 = infoList[i].getAttribute("lon");
-				var attributeLat2 = infoList[i+1].getAttribute("lat");
-				var attributeLon2 = infoList[i+1].getAttribute("lon");
-				var flightPlanCoordinates = [
-					new google.maps.LatLng(attributeLat1,attributeLon1),
-    				new google.maps.LatLng(attributeLat2,attributeLon2)
-    			];
-    			var flightPath = new google.maps.Polyline({
-				    path: flightPlanCoordinates,
-				    strokeColor: "#FF0000",
-				    strokeOpacity: 1.0,
-				    strokeWeight: 2
-				});
-				flightPath.setMap(map);
-			}
+
 			var latLngArray = new Array();
 			var timeArray = new Array();
 
@@ -118,8 +105,47 @@ $(function() {
 				intervalArray[i] = calcInterval(timeArray[i],timeArray[i+1]);
 				speedArray[i] = calcSpeed(calcDistance(latLngArray[i],latLngArray[i+1]),intervalArray[i]);
 			}
-
-
+			console.log(speedArray);
+			for (i = 0; i+1<infoList.length; i=i+1){
+				var attributeLat1 = infoList[i].getAttribute("lat");
+				var attributeLon1 = infoList[i].getAttribute("lon");
+				var attributeLat2 = infoList[i+1].getAttribute("lat");
+				var attributeLon2 = infoList[i+1].getAttribute("lon");
+				var flightPlanCoordinates = [
+					new google.maps.LatLng(attributeLat1,attributeLon1),
+    				new google.maps.LatLng(attributeLat2,attributeLon2)
+    			];
+				if (speedArray[i] <SPEED_WALK){
+					var flightPath = new google.maps.Polyline({
+					    path: flightPlanCoordinates,
+							strokeColor:"#FF0000",
+					    strokeOpacity: 1.0,
+					    strokeWeight: 2
+					});
+				} else if(speedArray[i]<SPEED_RUN){
+					var flightPath = new google.maps.Polyline({
+						path: flightPlanCoordinates,
+						strokeColor:"blue",
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+					});
+				} else if(speedArray[i]<SPEED_BIKE){
+					var flightPath = new google.maps.Polyline({
+						path: flightPlanCoordinates,
+						strokeColor:"green",
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+					});
+				} else{
+					var flightPath = new google.maps.Polyline({
+						path: flightPlanCoordinates,
+						strokeColor:"black",
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+					});
+				}
+				flightPath.setMap(map);
+			}
 
 			/**
 				TODO:滞留点を求め、地図上にマーカーをプロットしてください。
@@ -138,7 +164,7 @@ $(function() {
 						marker.push(new google.maps.Marker({position: latLngArray[i],map:map}));
 						time_sum = 0;
 						infoWindow.push(new google.maps.InfoWindow({
-							content:'<div class="sample">滞留</div>'
+							content:'<div>ここに内容を書きます。<a href="">編集</a></div>'
 						}));
 						markerEvent(stop);
 						stop++;
@@ -147,18 +173,8 @@ $(function() {
 				}
 				time_sum = 0;
 			}
-			console.log(marker);
-			console.log(infoWindow);
-			// for (i=0; i<marker.length; i++){
-			// 	marker[i].addListener('click',function(){
-			// 		infoWindow[i].open(map,marker[i]);
-			// 	});
-			// }
+			// console.log(markerLatLng);
 
-			
-			//ここでは、ダミーとしてすべての点をプロットした場合を記載する（すべて消して書き換えること）
-
-			// 重心を求めて、地図の中心にする
 			var center = calcBalance(latLngArray);
 			map.setCenter(center);
 

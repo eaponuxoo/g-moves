@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420045237) do
+ActiveRecord::Schema.define(version: 20170424065812) do
 
   create_table "diaries", force: :cascade do |t|
     t.string   "title"
-    t.integer  "date"
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "date"
   end
 
   create_table "notes", force: :cascade do |t|

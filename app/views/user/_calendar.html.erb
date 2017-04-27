@@ -1,0 +1,23 @@
+<table>
+  <caption><%= today.strftime('%Y年%m月')%></caption>
+  <tr>
+    <th>日</th>
+    <th>月</th>
+    <th>火</th>
+    <th>水</th>
+    <th>木</th>
+    <th>金</th>
+    <th>土</th>
+  </tr>
+  <tr>
+<% d = today.at_beginning_of_month.at_beginning_of_week(:sunday)%>
+<% 1.upto(6).each do|i|%>
+  <tr>
+    <% (d..d.end_of_week(:sunday)).each do|c|%>
+    <% day = (c.strftime('%m') == today.strftime('%m'))? c.strftime('%d'): "  "%>
+    <th><%= link_to day, check_diaries_path(:day => c.strftime('%x') ) %></th>  
+    <% end %>
+  </tr>
+  <% d = d + 1.week %>
+<% end %>
+</table>

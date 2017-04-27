@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :diaries
+  resources :diaries, only: [:index, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get :check
+      get :show
+    end
+  end
   resources :notes
   root 'home#top'
   get 'user', to: 'user#show'
